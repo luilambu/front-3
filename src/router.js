@@ -24,10 +24,21 @@ const router = new vueRouter({
                 component: Portada
             },
             {
-                path: '/clientes/registro_cliente/',
+                 path: '/clientes/registro_cliente/',
                 name: "crear_cliente",
                 component: CrearCliente
+                
             },
+          /*  {
+                path: '/clientes/compras/',
+                name: "compras",
+                component: compras
+            },
+            {
+                path: '/clientes/consultar/',
+                name: "consultar_cliente",
+                component: clientes
+            }, */
         ]
     })
 

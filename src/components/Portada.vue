@@ -1,5 +1,5 @@
 <template>
-    <div id="Portada" class="portada">
+    <div id="Portada">
         <h2>Hola <span> Humano, </span> ¡Bienvenido!</h2>
     </div>
 </template>
@@ -7,12 +7,20 @@
 <script>
     export default {
         name: "Portada",
-        
+        data:function(){
+            return {
+                Saludo: ""
+            }
+        },
+
+        created: function(){
+            this.Saludo = "Hola"
+        }
     }
 </script>
 
 <style>
-    #portada{
+    #Portada{
         width: 100%;
         height: 100%;
 
@@ -21,12 +29,12 @@
         align-items: center;
     }
 
-    #portada h2{
+    #Portada h2{
         font-size: 50px;
         color: #000000;
     }
 
-    #portada span{
+    #Portada span{
         color: crimson;
         font-weight: bold;
     }

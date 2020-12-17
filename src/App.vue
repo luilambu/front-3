@@ -5,8 +5,8 @@
       <nav> 
       <button v-on:click="init"> Inicio </button>
       <button v-on:click="AddCliente"> Agregar Cliente</button>
-      <button v-on:click="FindCliente"> Buscar Cliente </button>
-      <button v-on:click="AddCompra"> Agregar Compra </button>
+      <button> Buscar Cliente </button>
+      <button> Agregar Compra </button>
       </nav>
     </div>
 
@@ -29,7 +29,7 @@ export default {
   
   data: function(){
     return {
-     
+      
     }
   },
 
@@ -51,6 +51,7 @@ export default {
       }
       
     },
+
 
   },
   beforeCreated: function(){
