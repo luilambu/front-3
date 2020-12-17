@@ -4,23 +4,20 @@
     </div>
 </template>
 
-
-
 <script>
     export default {
         name: "Portada",
         data:function(){
             return {
+
             }
         },
 
         created: function(){
+            
         }
     }
 </script>
-
-    
-
 
 <style>
     #Portada{

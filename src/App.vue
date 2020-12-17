@@ -8,12 +8,16 @@
       <button v-on:click="FindCliente"> Buscar Cliente </button>
       <button v-on:click="AddCompra"> Agregar Compra </button>
       </nav>
-    </div> 
+    </div>
+
     <div  class="main-component">
+      <router-view></router-view>
     </div> 
+
     <div class="footer">
       <h2>Created By: Grupo 9 G2M2</h2>
     </div>
+
   </div>
 </template>
 
@@ -34,24 +38,24 @@ export default {
   
   methods : {
 
-    updateAuth: function(){
-      this.$router.push({name: "portada"})
+    init: function(){
+      if(this.$route.name != "portada"){
+        this.$router.push({name: "portada"})
+      }
+      
     },
 
-    init: function(){
+    AddCliente: function(){
       if(this.$route.name != "crear_cliente"){
         this.$router.push({name: "crear_cliente"})
       }
       
     },
 
-    created: function(){
-      this.$router.push({name: "root"})
-      this.updateAuth()
-    }
-
   },
-        
+  beforeCreated: function(){
+    this.$router.push({name: "portada"})
+  }     
 }
 </script>
 

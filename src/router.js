@@ -24,7 +24,7 @@ const router = new vueRouter({
                 component: Portada
             },
             {
-                path: '/clientes/registro_cliente/:cc',
+                path: '/clientes/registro_cliente/',
                 name: "crear_cliente",
                 component: CrearCliente
             },
