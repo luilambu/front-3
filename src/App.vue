@@ -11,7 +11,7 @@
     </div>
 
     <div  class="main-component">
-      <router-view></router-view>
+      <router-view v-show="portada" ></router-view>
     </div> 
 
     <div class="footer">
