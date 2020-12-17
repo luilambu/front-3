@@ -47,9 +47,14 @@
                 }
                 }
             },
-        
+        }
             methods:
-                 if(category.trim() === 'none' || amount === ''){return alert('You shoud fill the fields!')};
+               addExpense(e) {
+
+               e.preventDefault();
+               const input = document.querySelector('#input').value;
+              
+               if(input.trim() === 'none'){return alert('¡Usted debe llenar todos lo campos!')};
             {
                 procesar() 
                     {
@@ -61,6 +66,7 @@
                 }
                 }
                 }
-
+                
+                
 
 </script>
