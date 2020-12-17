@@ -1,47 +1,57 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <div class="header">
       <h1>MINISAP</h1>
       <nav> 
-      <button v-on:click="init" v-if="is_auth" > Inicio </button>
-      <button v-on:click="getBalance" v-if="is_auth" > Agregar Cliente</button>
-      <button v-if="is_auth" > Buscar Cliente </button>
-      <button v-if="is_auth" > Agregar Compra </button>
-      <button v-if="is_auth" >Cerrar Sesión</button>
+      <button v-on:click="init"> Inicio </button>
+      <button v-on:click="AddCliente"> Agregar Cliente</button>
+      <button v-on:click="FindCliente"> Buscar Cliente </button>
+      <button v-on:click="AddCompra"> Agregar Compra </button>
       </nav>
     </div> 
     <div  class="main-component">
     </div> 
     <div class="footer">
-      <h2>AplicacionPymes</h2>
+      <h2>Created By: Grupo 9 G2M2</h2>
     </div>
   </div>
 </template>
 
 <script>
-import clienteComponent from './components/clienteComponent'; // DAVID
+import vueRouter from 'vue-router'
 
 export default {
   name: 'App',
-  components: {clienteComponent},
- 
+  
   data: function(){
     return {
-    is_auth: localStorage.getItem('isAuth') || false
-
-    }
      
+    }
   },
-    
+
+  components: {
+  },
+  
   methods : {
+
+    updateAuth: function(){
+      this.$router.push({name: "portada"})
+    },
+
+    init: function(){
+      if(this.$route.name != "crear_cliente"){
+        this.$router.push({name: "crear_cliente"})
+      }
+      
+    },
+
+    created: function(){
+      this.$router.push({name: "root"})
+      this.updateAuth()
+    }
 
   },
         
-  beforeCreate: function(){
-    localStorage.setItem('current_cc', '43626730')
-    localStorage.setItem('isAuth', true)
-
-  }
 }
 </script>
 
@@ -55,7 +65,7 @@ export default {
     width: 100%;
     height: 10vh;
     min-height: 100px;
-    background-color: #283747 ;
+    background-color: #093c72 ;
     color:#E5E7E9 ;
     display: flex;
     justify-content: space-between;
@@ -75,13 +85,13 @@ export default {
   } 
   .header nav button{
     color: #E5E7E9;
-    background: #283747;
+    background: #f70202;
     border: 1px solid #E5E7E9;
     border-radius: 5px;
     padding: 10px 20px;
   }
   .header nav button:hover{
-    color: #283747;
+    color: #056e13;
     background: #E5E7E9;
     border: 1px solid #E5E7E9;
   }
