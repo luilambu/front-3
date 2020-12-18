@@ -1,5 +1,5 @@
 <template>
- <div id="CrearCompra">
+ <div id="CrearCompranpm">
    <div>
      <h1>Agregar Compra</h1>
      <form name="form" id="form">v-on:submit.prevent="procesar():">
