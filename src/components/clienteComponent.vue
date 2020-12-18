@@ -20,6 +20,7 @@
   import Vue from 'vue';
   import axios from 'axios';
 //get consult(https://minisap01.herokuapp.com/clientes/consultar/cc)
+//post consult(https://minisap01.herokuapp.com/clientes/registro_cliente/{cc})
   export default { 
     name: "CrearCliente",    
     data : function(){ 
