@@ -1,4 +1,5 @@
 <template>
+
   <div id="app" class="app">
     <div class="header">
       <h1>MINISAP</h1>
@@ -11,7 +12,7 @@
     </div>
 
     <div  class="main-component">
-      <router-view v-show="portada" ></router-view>
+      <router-view  ></router-view>
     </div> 
 
     <div class="footer">
@@ -52,6 +53,12 @@ export default {
       
     },
 
+    AddCompras: function(){
+      if(this.$route.name != "crear_compras"){
+        this.$router.push({name: "crear_compras"})
+      }
+      
+    },
 
   },
   beforeCreated: function(){
