@@ -3,9 +3,8 @@ import vueRouter from 'vue-router'
 
 import CrearCliente from './components/clienteComponent'
 import Portada from './components/Portada'
-//import UserAuth from './components/UserAuth'
-//import UserBalance from './components/UserBalance'
-//import UserTransaction from './components/UserTransaction'
+import CrearCompranpm from './components/comprasComponent'
+import ClienteAuth from './components/auth_cliente'
 import App from './App'
 
 
@@ -29,16 +28,16 @@ const router = new vueRouter({
                 component: CrearCliente
                 
             },
-          /*  {
+            {
                 path: '/clientes/compras/',
-                name: "compras",
-                component: compras
+                name: "CrearCompra",
+                component: CrearCompranpm
             },
             {
-                path: '/clientes/consultar/',
-                name: "consultar_cliente",
-                component: clientes
-            }, */
+                path: '/clientes/auth/',
+                name: "auth_cliente",
+                component: ClienteAuth
+            }, 
         ]
     })
 

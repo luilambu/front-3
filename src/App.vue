@@ -6,8 +6,8 @@
       <nav> 
       <button v-on:click="init"> Inicio </button>
       <button v-on:click="AddCliente"> Agregar Cliente</button>
-      <button> Buscar Cliente </button>
-      <button> Agregar Compra </button>
+      <button v-on:click="AuthCliente"> Buscar Cliente </button>
+      <button v-on:click="AddCompras"> Agregar Compra </button>
       </nav>
     </div>
 
@@ -53,9 +53,16 @@ export default {
       
     },
 
+    AuthCliente: function(){
+      if(this.$route.name != "auth_cliente"){
+        this.$router.push({name: "auth_cliente"})
+      }
+      
+    },
+
     AddCompras: function(){
-      if(this.$route.name != "crear_compras"){
-        this.$router.push({name: "crear_compras"})
+      if(this.$route.name != "CrearCompra"){
+        this.$router.push({name: "CrearCompra"})
       }
       
     },
