@@ -1,5 +1,5 @@
 <template>
-   <div id="AuthCliente" class="auth_cliente">
+   <div id="ClienteAuth">
        <div class="container_auth_cliente">
            <h2>ValidarCliente</h2>
            <form v-on:submit.prevent="processAuthcliente" >
@@ -14,41 +14,92 @@
              <button type="submit">Iniciar Sesión</button>
          </form>
      </div>
-  </div>
+
+     <table class="table">
+          <thead>
+              <tr>
+                 <th> Nombre</th>
+                 <th> Cedula</th>
+                 <th> Correo></th>
+                 <th> Telefono</th>
+                 <th> Direccion</th>
+                 <th> Ciudad</th>
+               </tr> 
+           </thead>
+        </table>
+        <tbody>
+            
+              <tr>
+
+               <td>{{Nombre}}</td>
+               <td>{{Cedula}}</td>
+               <td>{{Correo}}</td>
+               <td>{{Telefono}}</td>
+               <td>{{Direccion}}</td>
+               <td>{{Ciudad}}</td>
+             </tr>
+        </tbody>    
+
+ </div>                
 </template>
 <script>
+  import Vue from "vue";
+  import axios from 'axios';
 
-import axios from 'axios';
-
-export default {
+  export default {
+   
     name: "ClienteAuth",
     data: function(){
         return {
-            cliente_in: {
-                cc:"",
-        
-            }
+            clientes_in: {
+              Nombre:"",
+              Cedula:"",
+              Correo:"",
+              Telefono:"",
+              Direccion: "",
+              ciudad:"",
+             }   
         }
-},
+     },
+
 methods: {
 
-    processAuthCliente: function(){
+    processAuthCliente: function() {
        var self = this
-       axios.post("http:",
+       axios.get("https://minisap01.herokuapp.com/clientes/consultar/"+ this.cc,
                   self.cliente_in, {headers: {}})
             .then((result) => {
                 alert("Validacion Exitosa");
                 self.$emit('cc-in', self.cliente_in.cc)
-      })
-
-   .catch((error) => {
+            })
+       .catch((error) => {
         if (error.response.status == "404")
             alert("ERROR 404: cliente no encontrado.");
         
-      });
+        });
+    },
+
+    get_clientes_in: function () {
+     var este = this;
+     axios.get("https://minisap01.herokuapp.com/clientes/consultar/", este.cc, {
+       params:{
+            cc:Cedula
+       }
+       }) 
+       
+
+    .then(function (response) {
+           este.clientes_in= response.data;
+           console.log(response);
+           este.this.get_clientes_in()
+     });
     }
-  }
+},
+     created: function () {
+          this.get_clientes_in (); 
+   }
 }
+
 </script>
 
 <style>

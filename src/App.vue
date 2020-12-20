@@ -12,7 +12,7 @@
     </div>
 
     <div  class="main-component">
-      <router-view  ></router-view>
+      <router-view></router-view>
     </div> 
 
     <div class="footer">

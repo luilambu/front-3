@@ -14,7 +14,31 @@
         <input type="submit" value="">
      </form>
     </div>
-  </div>
+     <table class="table">
+          <thead>
+              <tr>
+                 <th> id_compra</th>
+                 <th> Cedula</th>
+                 <th> nombre_producto</th>
+                 <th> cantidad</th>
+                 <th> precio</th>
+                 <th> Total</th>
+               </tr> 
+            </thead>
+          </table>
+        <tbody>
+            
+             <tr>
+
+               <td>{{d.id_compra}}</td>
+               <td>{{d.cedula}}</td>
+               <td>{{d.nombre_producto}}</td>
+               <td>{{d.cantidad}}</td>
+               <td>{{d.precio}}</td>
+               <td>{{d.Total}}</td>
+             </tr>
+        </tbody>    
+    </div>
 </template>
 
 <script>
@@ -25,16 +49,18 @@
     name: "CrearCompranpm",    
     data : function(){ 
       return {
-        compras: {
-          Id_Compra: '',
-          cedula: '',
-          Nombre_Producto: '',
-          Cantidad:'',
-          Precio: '',
-          Total: ''
+            compras_in: {
+            id_compra:"",
+            cedula:"",
+            nombre_producto:"",
+            cantidad:"",
+            precio: "",
+            Total:"",
+            },
+
         }
-      }
-    },
+      },
+    
 
   methods: {
   addExpense(e) {
@@ -49,5 +75,5 @@
       }
     }
   }
-}
+ }
 </script>
