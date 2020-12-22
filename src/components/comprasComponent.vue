@@ -35,13 +35,12 @@
         <tbody>
             
              <tr>
-
                <td>{{compra.id_compra}}</td>
-               <td>{{compra.cedula}}</td>
+               <td>{{compra.cc_cliente}}</td>
                <td>{{compra.nombre_producto}}</td>
                <td>{{compra.cantidad}}</td>
-               <td>{{compra.Precio}}</td>
-               <td>{{compra.Total}}</td>
+               <td>{{compra.precio_pub}}</td>
+               <td>{{compra.costo_total}}</td>
              </tr>
         </tbody>    
     </div>
