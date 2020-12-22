@@ -2,18 +2,20 @@
  <div id="CrearCompranpm">
    <div>
      <h1>Agregar Compra</h1>
-     <form name="form" id="form">v-on:submit.prevent="procesar():">
-        <p> Id_Compra: <input type="numb" name="id_compra" placeholder="Id_Compra" class="form-comtrol" v-model= "compras.id_compra"/> </p>
-        <p> Cedula: <input tipe="numb" name="cedula" placeholder="cedula" class="form-comtrol" v-model= "compras.cedula"/>/></p>
-        <p>Nombre_Producto: <input tipe="text" name="Nombre_Producto" placeholder="Nombre_Producto" class="form-comtrol" v-model= "compras.Nombre_producto"/>/></p>
-        <p>Cantidad: <input tipe="numb" name="Cantidad" placeholder="Cantidad" class="form-comtrol" v-model= "compras.cantidad"/>/></p>
-        <p>Precio: <input tipe="numb" name="Precio" placeholder="Precio" class="form-comtrol" v-model= "compras.Precio"/>/> </p>
-        <p>Total: <input tipe="numb" name="Total" placeholder="Total" class="form-comtrol" v-model= "compras.Total"/>/></p>
+     <form name="form" id="form" v-on:submit.prevent="procesar()">
+        <p> Id_Compra: <input type="numb" name="id_compra" placeholder="Id_Compra" class="form-comtrol" v-model= "compras.id_compra"/></p>
+        <p> Cedula: <input tipe="numb" name="cedula" placeholder="cedula" class="form-comtrol" v-model= "compras.cedula"/></p>
+        <p>Nombre_Producto: <input tipe="text" name="Nombre_Producto" placeholder="Nombre_Producto" class="form-comtrol" v-model= "compras.Nombre_producto"/></p>
+        <p>Cantidad: <input tipe="numb" name="Cantidad" placeholder="Cantidad" class="form-comtrol" v-model= "compras.cantidad"/></p>
+        <p>Precio: <input tipe="numb" name="Precio" placeholder="Precio" class="form-comtrol" v-model= "compras.Precio"/> </p>
+        <p>Total: <input tipe="numb" name="Total" placeholder="Total" class="form-comtrol" v-model= "compras.Total"/></p>
        
         <hr />
+        <button v-on:click="guardarCompra"> Agregar</button>
         <input type="submit" value="">
      </form>
     </div>
+     <button v-on:click="consultacompras"> consulta compras</button>
      <table class="table">
           <thead>
               <tr>
@@ -30,12 +32,12 @@
             
              <tr>
 
-               <td>{{d.id_compra}}</td>
-               <td>{{d.cedula}}</td>
-               <td>{{d.nombre_producto}}</td>
-               <td>{{d.cantidad}}</td>
-               <td>{{d.precio}}</td>
-               <td>{{d.Total}}</td>
+               <td>{{id_compra}}</td>
+               <td>{{Cedula}}</td>
+               <td>{{nombre_producto}}</td>
+               <td>{{cantidad}}</td>
+               <td>{{precio}}</td>
+               <td>{{Total}}</td>
              </tr>
         </tbody>    
     </div>
@@ -49,7 +51,7 @@
     name: "CrearCompranpm",    
     data : function(){ 
       return {
-            compras_in: {
+            compras: {
             id_compra:"",
             cedula:"",
             nombre_producto:"",
@@ -63,6 +65,28 @@
     
 
   methods: {
+    consultacompras(){
+        axios.get("https://minisap01.herokuapp.com/clientes/compras/"+this.cedula)
+        .then(data =>{
+              
+                console.log(data);
+                this.makeToast("Hecho","cliente creado","success");
+            }).catch( e =>{
+                console.log(e);
+                 this.makeToast("Error","Error al guardar","error");
+            })
+    },
+    guardarCompra(){
+      
+            axios.post("https://minisap01.herokuapp.com/clientes/compras/"+this.data)
+            .then(data =>{
+                console.log(data);
+                this.makeToast("Hecho","cliente creado","success");
+            }).catch( e =>{
+                console.log(e);
+                 this.makeToast("Error","Error al guardar","error");
+            })
+    },
   addExpense(e) {
       e.preventDefault();
       const input = document.querySelector('#input').value;

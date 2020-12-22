@@ -2,16 +2,13 @@
    <div id="ClienteAuth">
        <div class="container_auth_cliente">
            <h2>ValidarCliente</h2>
-           <form v-on:submit.prevent="processAuthcliente" >
-             <input type="numb"
-                  v-model="cliente_in.cc"
+           <form v-on:submit.prevent="processAuthCliente" >
+             <input type="number"
+                  v-model="clientes_in.Cedula"
                   placeholder="cc">
              <br>
-             <input type="cc"
-                    v-model="user_in.cc"
-                    placeholder="cc">
-             <br>
-             <button type="submit">Iniciar Sesión</button>
+             
+             <button type="submit"> validar</button>
          </form>
      </div>
 
@@ -20,7 +17,7 @@
               <tr>
                  <th> Nombre</th>
                  <th> Cedula</th>
-                 <th> Correo></th>
+                 <th> Correo</th>
                  <th> Telefono</th>
                  <th> Direccion</th>
                  <th> Ciudad</th>
@@ -30,13 +27,13 @@
         <tbody>
             
               <tr>
-
-               <td>{{Nombre}}</td>
-               <td>{{Cedula}}</td>
-               <td>{{Correo}}</td>
-               <td>{{Telefono}}</td>
-               <td>{{Direccion}}</td>
-               <td>{{Ciudad}}</td>
+              
+               <td>{{ clientes_in.Nombre}}</td>
+               <td>{{clientes_in.Cedula}}</td>
+               <td>{{clientes_in.Correo}}</td>
+               <td>{{clientes_in.Telefono}}</td>
+               <td>{{clientes_in.Direccion}}</td>
+               <td>{{clientes_in.Ciudad}}</td>
              </tr>
         </tbody>    
 
@@ -57,7 +54,7 @@
               Correo:"",
               Telefono:"",
               Direccion: "",
-              ciudad:"",
+              Ciudad:"",
              }   
         }
      },
@@ -66,11 +63,24 @@ methods: {
 
     processAuthCliente: function() {
        var self = this
-       axios.get("https://minisap01.herokuapp.com/clientes/consultar/"+ this.cc,
-                  self.cliente_in, {headers: {}})
-            .then((result) => {
+      // let clientesIn = {
+       // cc: this.cc,
+     
+    
+       axios.get("https://minisap01.herokuapp.com/clientes/consultar/"+ this.clientes_in.Cedula)
+     
+      
+
+            .then((response) => {
+              this.clientes_in.Nombre=response.data.nombre;
+              this.clientes_in.Cedula=response.data.cc;
+              this.clientes_in.Correo=response.data.email;
+              this.clientes_in.Telefono=response.data.telefono;
+              this.clientes_in.Direccion=response.data.direccion;
+              this.clientes_in.Ciudad=response.data.ciudad;
+              console.log(response);
                 alert("Validacion Exitosa");
-                self.$emit('cc-in', self.cliente_in.cc)
+                self.$emit('cc-in', self.Cedula)
             })
        .catch((error) => {
         if (error.response.status == "404")
@@ -78,27 +88,12 @@ methods: {
         
         });
     },
-
-    get_clientes_in: function () {
-     var este = this;
-     axios.get("https://minisap01.herokuapp.com/clientes/consultar/", este.cc, {
-       params:{
-            cc:Cedula
-       }
-       }) 
-       
-
-    .then(function (response) {
-           este.clientes_in= response.data;
-           console.log(response);
-           este.this.get_clientes_in()
-     });
-    }
+ 
 },
-     created: function () {
-          this.get_clientes_in (); 
-   }
+  
+  
 }
+
 
 </script>
 

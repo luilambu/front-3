@@ -34,7 +34,7 @@ const router = new vueRouter({
                 component: CrearCompranpm
             },
             {
-                path: '/clientes/auth/',
+                path: '/clientes/auth/:Cedula',
                 name: "auth_cliente",
                 component: ClienteAuth
             }, 
