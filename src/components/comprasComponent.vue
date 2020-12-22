@@ -15,8 +15,11 @@
         <button type="submit">guardar</button>
      </form>
     </div>
-
-     <button v-on:click="consultacompras"> consulta compras</button>
+    <h2>Consulta Compras</h2>
+    <form name="consulta" id="consulta" v-on:submit.prevent="consultacompras()">
+      <p> Cedula: <input tipe="numb" name="cedula" placeholder="cedula" class="form-comtrol" v-model= "compras.cedula"/></p>
+      <button type="submit"> consulta </button>
+    </form>
      <table class="table">
           <thead>
               <tr>
@@ -33,12 +36,12 @@
             
              <tr>
 
-               <td>{{compras.id_compra}}</td>
-               <td>{{compras.cedula}}</td>
-               <td>{{compras.nombre_producto}}</td>
-               <td>{{compras.cantidad}}</td>
-               <td>{{compras.Precio}}</td>
-               <td>{{compras.Total}}</td>
+               <td>{{compra.id_compra}}</td>
+               <td>{{compra.cedula}}</td>
+               <td>{{compra.nombre_producto}}</td>
+               <td>{{compra.cantidad}}</td>
+               <td>{{compra.Precio}}</td>
+               <td>{{compra.Total}}</td>
              </tr>
         </tbody>    
     </div>
@@ -52,6 +55,7 @@
     name: "CrearCompranpm",    
     data : function(){ 
       return {
+            compra:{},
             compras: {
             id_compra:"",
             cedula:"",
@@ -65,13 +69,17 @@
     
 
   methods: {
+
     consultacompras(){
         console.log(this.compras.cedula)
         axios.get("https://minisap01.herokuapp.com/clientes/compras/"+this.compras.cedula)
-        .then(data =>{
-                console.log(data);
+          .then(response =>{
+            for(var i=0; i<response.data.length; i++){
+              this.compra=response.data[i];
+            }
+                console.log(response);
 
-                alert("Hecho","compras consultadas");
+                alert("Hecho compras consultadas");
             }).catch( e =>{
                 console.log(e);
                 alert("Error al consultar");
