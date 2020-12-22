@@ -96,7 +96,7 @@
             })
             .then(response =>{
                 console.log(Response);
-                alert("cliente creado","success");
+                alert("Compra creada","success");
             }).catch( error =>{
                 console.log(response);
                 alert("Error al guardar","fallido");

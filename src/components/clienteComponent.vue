@@ -2,7 +2,7 @@
  <div id="CrearCliente">
    <div>
      <h1>Agregar Cliente</h1>
-     <form name="form" id="form" v-on:submit.prevent="procesar()">
+     <form name="form" id="form" v-on:submit.prevent="guardarCliente()">
         <p>Nombre: <input type="text" name="nombre" placeholder="Nombre" class="form-comtrol" v-model= "cliente.nombre"/> </p>
         <p>Cedula: <input tipe="numb" name="cedula" placeholder="cedula" class="form-comtrol" v-model= "cliente.cedula"/></p>
         <p>E-mail: <input tipe="text" name="E-mail" placeholder="E-mail" class="form-comtrol" v-model= "cliente.correo"/></p>
@@ -10,7 +10,7 @@
         <p>Ciudad: <input tipe="text" name="Ciudad" placeholder="Ciudad" class="form-comtrol" v-model= "cliente.ciudad"/></p>
         <p>Telefono: <input tipe="text" name="Telefono" placeholder="Telefono" class="form-comtrol" v-model= "cliente.Telefono"/> </p>
         <hr />
-         <button v-on:click="guardarCliente"> Agregar </button>
+         <button type="submit"> Agregar </button>
         <!--input type="submit" value=""-->
      </form>
     </div>
@@ -40,13 +40,13 @@
   methods: {
     guardarCliente(){
      
-            axios.post("https://minisap01.herokuapp.com/clientes/registro_cliente/",this.data)
+            axios.post("https://minisap01.herokuapp.com/clientes/registro_cliente/",this.cliente)
             .then(data =>{
                 console.log(data);
-                this.makeToast("Hecho","cliente creado","success");
+                alert("Cliente creado","success");
             }).catch( e =>{
                 console.log(e);
-                 this.makeToast("Error","Error al guardar","error");
+                 alert("Error al guardar","error");
             })
     },
   addExpense(e) {
